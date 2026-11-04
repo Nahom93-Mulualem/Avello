@@ -48,7 +48,7 @@ export default function BookingModal({ isOpen, onClose, initialService }: Bookin
         <div className="bg-primary px-6 sm:px-8 py-5 text-on-primary flex items-center justify-between border-b border-primary-deep">
           <div>
             <span className="font-sans text-[11px] uppercase tracking-wider font-semibold text-amber">
-              Abel Gidey Personal Training
+              Abel Gidey Personal Trainer
             </span>
             <h3 className="font-serif text-2xl font-normal text-on-primary mt-0.5">
               Start with an assessment

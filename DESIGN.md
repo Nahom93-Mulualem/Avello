@@ -1,5 +1,5 @@
 ---
-name: Abel Gidey Personal Training
+name: Abel Gidey Personal Trainer
 tagline: Precision first. Power follows.
 colors:
   canvas: '#F7F3EB'
@@ -52,7 +52,7 @@ motion:
   reveal-distance: 20px
 ---
 
-# Abel Gidey Personal Training: Design System
+# Abel Gidey Personal Trainer: Design System
 
 This file is the single source of truth for the look, feel and motion of Abel Gidey's website. Any designer or AI agent building pages must follow it. If something is not covered here, choose the calmer, simpler option.
 

@@ -3,20 +3,20 @@ import "./globals.css";
 import ClientShell from "@/components/ClientShell";
 
 export const metadata: Metadata = {
-  title: "Abel Gidey | Personal Training • Precision first. Power follows.",
+  title: "Abel Gidey | Personal Trainer • Precision first. Power follows.",
   description:
-    "Personal training built on mechanics rather than ego. Load goes up only when the movement is clean; power comes after precision. Private in Portland or online worldwide.",
+    "Personal trainer built on mechanics rather than ego. Load goes up only when the movement is clean; power comes after precision. Private in Portland or online worldwide.",
   keywords: [
     "Abel Gidey",
     "Coach Avello",
-    "Personal Training Portland",
+    "Personal Trainer Portland",
     "Weight Training Mechanics",
     "Movement Assessment",
     "Precision Strength",
   ],
   openGraph: {
-    title: "Abel Gidey | Personal Training",
-    description: "Precision first. Power follows. Personal training built on mechanics rather than ego.",
+    title: "Abel Gidey | Personal Trainer",
+    description: "Precision first. Power follows. Personal trainer built on mechanics rather than ego.",
     type: "website",
   },
 };

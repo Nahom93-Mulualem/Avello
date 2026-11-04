@@ -63,7 +63,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
             <div className="relative h-9 w-9 rounded-full overflow-hidden bg-sand border border-outline/30 flex-shrink-0">
               <Image
                 src="/images/logo.jpg"
-                alt="Abel Gidey Personal Training"
+                alt="Abel Gidey Personal Trainer"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform"
                 priority
@@ -74,7 +74,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
                 Abel Gidey
               </span>
               <span className="font-sans text-[11px] font-semibold uppercase tracking-wider text-ink-soft mt-0.5">
-                Personal Training • Coach Avello
+                Personal Trainer • Coach Avello
               </span>
             </div>
           </Link>
