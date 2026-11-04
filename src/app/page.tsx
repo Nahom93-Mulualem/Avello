@@ -3,13 +3,13 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  ArrowRight, 
-  MessageCircle, 
-  Phone, 
-  MapPin, 
-  CheckCircle, 
-  Quote, 
+import {
+  ArrowRight,
+  MessageCircle,
+  Phone,
+  MapPin,
+  CheckCircle,
+  Quote,
   Sparkles,
   Calendar,
   ShieldCheck
@@ -19,9 +19,9 @@ import { useBooking } from "@/components/ClientShell";
 function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
     </svg>
   );
 }
@@ -527,9 +527,9 @@ export default function HomePage() {
                   </div>
                   <div>
                     <span className="text-xs uppercase tracking-wider text-amber font-semibold block">Phone</span>
-                    <a href="tel:+15035550198" className="hover:text-amber transition-colors">
-                      (503) 555-0198
-                    </a>
+                      <a href="tel:+251911234567" className="hover:text-amber transition-colors">
+                        +251 911 234 567
+                      </a>
                   </div>
                 </div>
 
@@ -623,9 +623,8 @@ export default function HomePage() {
                         if (formError) setFormError("");
                       }}
                       placeholder="you@email.com or @telegram"
-                      className={`w-full px-4 py-3 rounded-lg bg-surface border text-ink font-sans text-body-md focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm ${
-                        formError ? "border-error" : "border-sand"
-                      }`}
+                      className={`w-full px-4 py-3 rounded-lg bg-surface border text-ink font-sans text-body-md focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm ${formError ? "border-error" : "border-sand"
+                        }`}
                     />
                     {formError && (
                       <p className="font-sans text-xs text-error mt-1">{formError}</p>

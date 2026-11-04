@@ -1,17 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { MessageCircle, Phone, MapPin, ArrowUp } from "lucide-react";
 
 function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
-    <svg 
-      className={className} 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
       strokeLinejoin="round"
     >
       <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -40,20 +41,30 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-outline/20">
           {/* Brand & Narrative (6 cols) */}
           <div className="md:col-span-6 space-y-4">
-            <Link href="/" className="inline-block">
-              <span className="font-serif text-3xl text-ink font-normal tracking-tight">
-                Abel Gidey
-              </span>
-              <p className="font-sans text-xs uppercase tracking-widest text-secondary font-semibold mt-1">
-                Personal Trainer • Coach Avello
+              <Link href="/" className="flex items-center gap-3.5 group">
+                <div className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-full overflow-hidden bg-canvas border-2 border-outline/40 flex-shrink-0 shadow-sm">
+                  <Image
+                    src="/images/logo.jpg"
+                    alt="Abel Gidey Personal Trainer"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-serif text-3xl text-ink font-normal tracking-tight group-hover:text-secondary transition-colors">
+                    Abel Gidey
+                  </span>
+                  <p className="font-sans text-xs uppercase tracking-widest text-secondary font-semibold mt-0.5">
+                    Personal Trainer • Coach Avello
+                  </p>
+                </div>
+              </Link>
+              <p className="font-serif text-xl italic text-primary leading-snug">
+                &ldquo;Precision first. Power follows.&rdquo;
               </p>
-            </Link>
-            <p className="font-serif text-xl italic text-primary leading-snug">
-              &ldquo;Precision first. Power follows.&rdquo;
-            </p>
-            <p className="font-sans text-body-md text-ink-soft max-w-md leading-relaxed">
-              Coaching on mechanics rather than ego. Private in the room or delivered online, anywhere in the world. Built around your body, your goal and your week.
-            </p>
+              <p className="font-sans text-body-md text-ink-soft max-w-md leading-relaxed">
+                Coaching on mechanics rather than ego. Private in the room or delivered online, anywhere in the world. Built around your body, your goal and your week.
+              </p>
           </div>
 
           {/* Quick Anchor Links (3 cols) */}
@@ -98,10 +109,10 @@ export default function Footer() {
             <ul className="space-y-2.5 font-sans text-body-md text-ink-soft">
               <li className="flex items-center gap-2.5">
                 <MessageCircle className="w-4 h-4 text-secondary flex-shrink-0" />
-                <a 
-                  href="https://t.me/abelgidey" 
-                  target="_blank" 
-                  rel="noreferrer" 
+                <a
+                  href="https://t.me/abelgidey"
+                  target="_blank"
+                  rel="noreferrer"
                   className="hover:text-ink transition-colors"
                 >
                   Telegram: @abelgidey
@@ -109,16 +120,16 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-secondary flex-shrink-0" />
-                <a href="tel:+15035550198" className="hover:text-ink transition-colors">
-                  (503) 555-0198
-                </a>
+                  <a href="tel:+251911234567" className="hover:text-ink transition-colors">
+                    +251 911 234 567
+                  </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <InstagramIcon className="w-4 h-4 text-secondary flex-shrink-0" />
-                <a 
-                  href="https://instagram.com/coach.avello" 
-                  target="_blank" 
-                  rel="noreferrer" 
+                <a
+                  href="https://instagram.com/coach.avello"
+                  target="_blank"
+                  rel="noreferrer"
                   className="hover:text-ink transition-colors"
                 >
                   Instagram: @coach.avello
@@ -126,10 +137,10 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <TikTokIcon className="w-4 h-4 text-secondary flex-shrink-0" />
-                <a 
-                  href="https://tiktok.com/@coach.avello" 
-                  target="_blank" 
-                  rel="noreferrer" 
+                <a
+                  href="https://tiktok.com/@coach.avello"
+                  target="_blank"
+                  rel="noreferrer"
                   className="hover:text-ink transition-colors"
                 >
                   TikTok: @coach.avello
