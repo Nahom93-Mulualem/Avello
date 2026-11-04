@@ -1,0 +1,666 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { 
+  ArrowRight, 
+  MessageCircle, 
+  Phone, 
+  MapPin, 
+  CheckCircle, 
+  Quote, 
+  Sparkles,
+  Calendar,
+  ShieldCheck
+} from "lucide-react";
+import { useBooking } from "@/components/ClientShell";
+
+function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+    </svg>
+  );
+}
+
+export default function HomePage() {
+  const { openBooking } = useBooking();
+
+  // Booking Section Form State
+  const [formName, setFormName] = useState("");
+  const [formContact, setFormContact] = useState("");
+  const [formGoal, setFormGoal] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formError, setFormError] = useState("");
+  const [showMobileStickyBar, setShowMobileStickyBar] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show mobile sticky bar after scrolling past hero (approx 500px)
+      // Hide near contact section
+      const contactEl = document.getElementById("contact");
+      const contactTop = contactEl ? contactEl.offsetTop - 400 : 999999;
+      const scrollPos = window.scrollY;
+
+      setShowMobileStickyBar(scrollPos > 450 && scrollPos < contactTop);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formContact.trim()) {
+      setFormError("Please add a way for me to reach you.");
+      return;
+    }
+    setFormError("");
+    setFormSubmitted(true);
+  };
+
+  const services = [
+    {
+      num: "01",
+      title: "Weight Training",
+      desc: "Structured resistance work built on mechanics rather than ego. Load progresses only once the movement is clean. Power comes after precision.",
+      tag: "Strength",
+    },
+    {
+      num: "02",
+      title: "Individual Assessment",
+      desc: "Before anything is programmed, we audit how you actually move. Every plan starts from your body, not from a template.",
+      tag: "Biomechanics",
+    },
+    {
+      num: "03",
+      title: "Fitness Programs",
+      desc: "A written roadmap for your goal, your equipment and your week, private in the room or delivered online, anywhere in the world.",
+      tag: "In-Person & Online",
+    },
+    {
+      num: "04",
+      title: "Nutrition Advice",
+      desc: "Practical guidance that supports the training instead of fighting it. Fuel for the work, not a punishment protocol.",
+      tag: "Metabolic Health",
+    },
+    {
+      num: "05",
+      title: "Fitness Advice",
+      desc: "The questions between sessions: recovery, sleep, pain, travel, plateaus. Coaching continues outside the gym.",
+      tag: "Recovery & Sleep",
+    },
+    {
+      num: "06",
+      title: "Adaptability",
+      desc: "Injuries, schedules and bad weeks happen. The programme bends around them without losing the thread of progress.",
+      tag: "Real Life",
+    },
+    {
+      num: "07",
+      title: "Technical Skills",
+      desc: "Cueing, tempo, positioning and correction. The detail work that turns an exercise into an injury-proof pattern.",
+      tag: "Precision",
+    },
+  ];
+
+  const results = [
+    {
+      quote: "For seven years, back spasms made lifting my kids feel like a gamble. Abel taught me deep pelvic positioning and breathing. Today, I deadlift 150 lbs completely pain-free.",
+      author: "Sarah",
+      context: "Architect, 42 • Training 14 months",
+    },
+    {
+      quote: "By 35, twelve-hour tech sprints left me running on 4 cold brews. Abel treated stress as biological data. We focused on steady breathing and mechanics. My resting HR dropped 14 bpm.",
+      author: "Marcus",
+      context: "Software Engineer, 36 • Half-marathoner",
+    },
+    {
+      quote: "At 58, gym culture made me feel invisible. Abel built my bone density through farmer carries and hex-bar pulls. My latest DEXA scan showed an 18% improvement.",
+      author: "Linda",
+      context: "Professor, 58 • Multi-day trail hiker",
+    },
+  ];
+
+  return (
+    <div className="flex flex-col w-full bg-canvas text-ink">
+      {/* 1. HERO SECTION (Canvas Background) */}
+      <section className="relative w-full pt-10 sm:pt-16 pb-16 md:pb-24 overflow-hidden">
+        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left Editorial Text (7 cols) */}
+            <div className="lg:col-span-7 flex flex-col items-start space-y-6 z-10">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand text-ink text-label-md font-semibold tracking-wider uppercase border border-outline/30">
+                <span className="w-2 h-2 rounded-full bg-secondary" />
+                <span>Coach Avello • Private Atelier &amp; Online</span>
+              </div>
+
+              <h1 className="font-serif text-display-xl-mobile sm:text-display-xl text-ink leading-tight tracking-tight">
+                Get <span className="italic font-normal text-secondary">stronger</span>, one clean rep at a time.
+              </h1>
+
+              <p className="font-sans text-body-lg text-ink-soft max-w-xl leading-relaxed">
+                Friendly, precise coaching built around your body, your goal and your week. Mechanics come before load; power follows precision.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-2">
+                <button
+                  onClick={() => openBooking("Individual Assessment")}
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[44px] rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all duration-base font-sans text-label-md uppercase tracking-wider font-semibold shadow-level1 hover:shadow-level2 hover:-translate-y-0.5 active:translate-y-0 group"
+                >
+                  <span>Start with an assessment</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-fast group-hover:translate-x-1" />
+                </button>
+                <a
+                  href="#services"
+                  className="inline-flex items-center justify-center px-6 py-3.5 min-h-[44px] font-sans text-body-md text-primary font-semibold hover:text-ink transition-colors underline-offset-8 hover:underline"
+                >
+                  See what I offer
+                </a>
+              </div>
+
+              {/* Quiet Evidence Strip */}
+              <div className="pt-6 border-t border-sand/80 flex flex-wrap items-center gap-6 text-xs text-ink-soft font-sans">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-tertiary" />
+                  <span>Mechanics-First Coaching</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle className="w-4 h-4 text-tertiary" />
+                  <span>Private In-Person &amp; Online Worldwide</span>
+                </span>
+              </div>
+            </div>
+
+            {/* Right Visual Showcase (5 cols) */}
+            <div className="lg:col-span-5 relative flex justify-center">
+              <div className="relative w-full max-w-md aspect-[4/5] rounded-hero overflow-hidden shadow-level2 bg-sand border border-outline/20">
+                <Image
+                  src="/images/dumbbell-curl.png"
+                  alt="Abel Gidey coaching in clean modern gym setting with warm lighting"
+                  fill
+                  className="object-cover transition-transform duration-slow hover:scale-105"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent flex items-end p-6 text-on-primary">
+                  <p className="font-serif text-lg italic text-canvas">
+                    &ldquo;Precision first. Power follows.&rdquo;
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. SERVICES MARQUEE (Slow, Pausable Ribbon on Sand) */}
+      <div className="w-full bg-sand py-4 border-y border-outline/30 overflow-hidden select-none">
+        <div className="animate-marquee whitespace-nowrap flex items-center gap-8 font-sans text-label-md uppercase tracking-widest text-primary font-semibold">
+          <span>Weight Training</span>
+          <span className="text-secondary">•</span>
+          <span>Individual Assessment</span>
+          <span className="text-secondary">•</span>
+          <span>Fitness Programs</span>
+          <span className="text-secondary">•</span>
+          <span>Nutrition Advice</span>
+          <span className="text-secondary">•</span>
+          <span>Fitness Advice</span>
+          <span className="text-secondary">•</span>
+          <span>Adaptability</span>
+          <span className="text-secondary">•</span>
+          <span>Technical Skills</span>
+          <span className="text-secondary">•</span>
+          {/* Repeat for seamless continuous loop */}
+          <span>Weight Training</span>
+          <span className="text-secondary">•</span>
+          <span>Individual Assessment</span>
+          <span className="text-secondary">•</span>
+          <span>Fitness Programs</span>
+          <span className="text-secondary">•</span>
+          <span>Nutrition Advice</span>
+          <span className="text-secondary">•</span>
+          <span>Fitness Advice</span>
+          <span className="text-secondary">•</span>
+          <span>Adaptability</span>
+          <span className="text-secondary">•</span>
+          <span>Technical Skills</span>
+          <span className="text-secondary">•</span>
+        </div>
+      </div>
+
+      {/* 3. ABOUT ABEL (Sand Background + Arch Shape Portrait) */}
+      <section id="about" className="w-full bg-sand py-section-gap-mobile md:py-section-gap">
+        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Arch-shaped portrait (5 cols) */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative w-full max-w-sm aspect-[3/4] arch-portrait overflow-hidden shadow-level2 bg-canvas border border-outline/30">
+                <Image
+                  src="/images/trainer-profile.jpg"
+                  alt="Abel Gidey standing portrait"
+                  fill
+                  className="object-cover transition-transform duration-slow hover:scale-105"
+                />
+              </div>
+            </div>
+
+            {/* Narrative Copy (7 cols) */}
+            <div className="lg:col-span-7 space-y-6">
+              <span className="font-sans text-label-md uppercase tracking-widest text-secondary font-semibold">
+                Who Abel Is
+              </span>
+              <h2 className="font-serif text-headline-lg-mobile md:text-headline-lg text-ink leading-tight">
+                Coaching on mechanics rather than <span className="italic text-primary">ego</span>.
+              </h2>
+              <div className="space-y-4 font-sans text-body-md text-ink-soft leading-relaxed">
+                <p>
+                  I coach on mechanics rather than ego. Load goes up only when the movement is clean; power comes after precision. Every plan starts from your body, not from an arbitrary internet template.
+                </p>
+                <p>
+                  Whether we meet in person inside our quiet private Portland atelier or work together online, the philosophy remains constant: warm, encouraging, and intellectually rigorous. Never loud, never shaming, and never &ldquo;no pain, no gain.&rdquo;
+                </p>
+                <p>
+                  I work with adults who want to get stronger safely, individuals returning from injury or long sedentary breaks, and busy people who require a plan that bends gracefully around their week.
+                </p>
+              </div>
+
+              <div className="pt-4 flex flex-wrap items-center gap-6 border-t border-outline/30">
+                <div>
+                  <p className="font-serif text-3xl text-primary font-normal">10+</p>
+                  <p className="font-sans text-xs uppercase tracking-wider text-ink-soft">Years Coaching</p>
+                </div>
+                <div className="h-8 w-px bg-outline/40" />
+                <div>
+                  <p className="font-serif text-3xl text-primary font-normal">NASM &amp; FMS</p>
+                  <p className="font-sans text-xs uppercase tracking-wider text-ink-soft">Movement Screening</p>
+                </div>
+                <div className="h-8 w-px bg-outline/40" />
+                <div>
+                  <p className="font-serif text-3xl text-primary font-normal">Pn2 Master</p>
+                  <p className="font-sans text-xs uppercase tracking-wider text-ink-soft">Nutritional Practice</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. THE SEVEN SERVICES (Canvas Background + 3x3 Grid) */}
+      <section id="services" className="w-full bg-canvas py-section-gap-mobile md:py-section-gap">
+        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+          <div className="max-w-2xl mb-14">
+            <span className="font-sans text-label-md uppercase tracking-widest text-secondary font-semibold">
+              The Seven Services
+            </span>
+            <h2 className="font-serif text-headline-lg-mobile md:text-headline-lg text-ink mt-2">
+              Coaching that <span className="italic text-primary">fits</span> your life.
+            </h2>
+            <p className="font-sans text-body-md text-ink-soft mt-3 leading-relaxed">
+              Every pillar is built on clean movement mechanics, sensible load progression, and real-world adherence.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+            {services.map((item) => (
+              <div
+                key={item.num}
+                className="bg-surface rounded-xl p-8 shadow-level1 hover:shadow-level2 hover:-translate-y-1.5 transition-all duration-base flex flex-col justify-between group border border-primary/10"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-serif text-3xl text-secondary-soft group-hover:text-secondary transition-colors duration-fast">
+                      {item.num}
+                    </span>
+                    <span className="font-sans text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-tertiary-tint text-primary">
+                      {item.tag}
+                    </span>
+                  </div>
+                  <h3 className="font-serif text-headline-sm text-ink mb-3 group-hover:text-primary transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="font-sans text-body-md text-ink-soft leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-sand flex items-center justify-between">
+                  <button
+                    onClick={() => openBooking(item.title)}
+                    className="font-sans text-label-md uppercase tracking-wider text-primary font-semibold hover:text-secondary transition-colors inline-flex items-center gap-1.5 group/btn"
+                  >
+                    <span>Explore this service</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-fast group-hover/btn:translate-x-1" />
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            {/* 8th Final CTA Card (per Section 6 spec) */}
+            <div className="bg-sand rounded-xl p-8 shadow-level1 flex flex-col justify-between border border-outline/30">
+              <div>
+                <span className="font-sans text-label-md uppercase tracking-widest text-secondary font-semibold">
+                  Get Started
+                </span>
+                <h3 className="font-serif text-headline-sm text-ink mt-3 mb-3">
+                  Ready to start with clean mechanics?
+                </h3>
+                <p className="font-sans text-body-md text-ink-soft leading-relaxed">
+                  Every journey begins with an audit of how your joints, spine, and breath actually coordinate. No high-pressure commitments.
+                </p>
+              </div>
+
+              <div className="pt-6 mt-6">
+                <button
+                  onClick={() => openBooking("Individual Assessment")}
+                  className="w-full min-h-[44px] py-3.5 rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all font-sans text-label-md uppercase tracking-wider font-semibold shadow-level1 flex items-center justify-center gap-2 group"
+                >
+                  <span>Book your assessment</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-fast group-hover:translate-x-1" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. HOW COACHING WORKS (Sand Background) */}
+      <section id="how-it-works" className="w-full bg-sand py-section-gap-mobile md:py-section-gap border-y border-outline/30">
+        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="font-sans text-label-md uppercase tracking-widest text-secondary font-semibold">
+              The Process
+            </span>
+            <h2 className="font-serif text-headline-lg-mobile md:text-headline-lg text-ink mt-2">
+              How coaching <span className="italic text-primary">works</span>.
+            </h2>
+            <p className="font-sans text-body-md text-ink-soft mt-3 leading-relaxed">
+              Three clear, deliberate steps. Simple, transparent, and grounded in real life.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Step 1 */}
+            <div className="bg-surface rounded-xl p-8 shadow-level1 flex flex-col justify-between border border-primary/10">
+              <div>
+                <div className="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-serif text-lg font-normal mb-6">
+                  1
+                </div>
+                <h3 className="font-serif text-headline-sm text-ink mb-3">
+                  Movement Assessment
+                </h3>
+                <p className="font-sans text-body-md text-ink-soft leading-relaxed">
+                  Before anything is programmed, we audit how you actually move. We check joint mobility, pelvic alignment, and posture. Zero intimidation.
+                </p>
+              </div>
+              <p className="font-sans text-xs uppercase tracking-wider text-secondary font-semibold mt-6 pt-4 border-t border-sand">
+                Step 01 • The Baseline
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-surface rounded-xl p-8 shadow-level1 flex flex-col justify-between border border-primary/10">
+              <div>
+                <div className="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-serif text-lg font-normal mb-6">
+                  2
+                </div>
+                <h3 className="font-serif text-headline-sm text-ink mb-3">
+                  Written Roadmap
+                </h3>
+                <p className="font-sans text-body-md text-ink-soft leading-relaxed">
+                  A custom plan for your goal, your equipment, and your week. Designed to bend around work and family life so progress stays uninterrupted.
+                </p>
+              </div>
+              <p className="font-sans text-xs uppercase tracking-wider text-secondary font-semibold mt-6 pt-4 border-t border-sand">
+                Step 02 • The Blueprint
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-surface rounded-xl p-8 shadow-level1 flex flex-col justify-between border border-primary/10">
+              <div>
+                <div className="w-10 h-10 rounded-full bg-primary-deep text-on-primary flex items-center justify-center font-serif text-lg font-normal mb-6">
+                  3
+                </div>
+                <h3 className="font-serif text-headline-sm text-ink mb-3">
+                  Ongoing Coaching
+                </h3>
+                <p className="font-sans text-body-md text-ink-soft leading-relaxed">
+                  Private sessions in the gym or structured online delivery. Constant technical refinement, recovery advice, and calm accountability.
+                </p>
+              </div>
+              <p className="font-sans text-xs uppercase tracking-wider text-secondary font-semibold mt-6 pt-4 border-t border-sand">
+                Step 03 • The Progression
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. CLIENT RESULTS (Canvas Background + Quote Tiles on Sand) */}
+      <section id="results" className="w-full bg-canvas py-section-gap-mobile md:py-section-gap">
+        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+          <div className="max-w-2xl mb-14">
+            <span className="font-sans text-label-md uppercase tracking-widest text-secondary font-semibold">
+              Real Experiences
+            </span>
+            <h2 className="font-serif text-headline-lg-mobile md:text-headline-lg text-ink mt-2">
+              Results that <span className="italic text-primary">last</span>.
+            </h2>
+            <p className="font-sans text-body-md text-ink-soft mt-3 leading-relaxed">
+              Real client quotes only. No artificial claims or extreme 30-day gimmicks.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {results.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-sand rounded-xl p-8 shadow-level1 flex flex-col justify-between border border-outline/30 relative"
+              >
+                <div>
+                  <Quote className="w-8 h-8 text-tertiary mb-4" />
+                  <p className="font-serif text-body-lg text-ink italic leading-relaxed mb-6">
+                    &ldquo;{item.quote}&rdquo;
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-outline/20">
+                  <p className="font-sans font-semibold text-ink text-body-md">
+                    {item.author}
+                  </p>
+                  <p className="font-sans text-xs text-ink-soft mt-0.5">
+                    {item.context}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. BOOKING & CONTACT (Dark Forest #354B3B / #1F3426 with Amber #F0B35A) */}
+      <section id="contact" className="w-full bg-primary py-section-gap-mobile md:py-section-gap text-on-primary">
+        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left Info & Channels (6 cols) */}
+            <div className="lg:col-span-6 space-y-8">
+              <div>
+                <span className="font-sans text-label-md uppercase tracking-widest text-amber font-semibold">
+                  Get in Touch
+                </span>
+                <h2 className="font-serif text-display-xl-mobile sm:text-headline-lg text-on-primary mt-2 leading-tight">
+                  Start with a calm <span className="italic text-amber">conversation</span>.
+                </h2>
+                <p className="font-sans text-body-lg text-sand/90 mt-4 leading-relaxed max-w-lg">
+                  Tell me a bit about where your body is today and what you are looking to build. I review every message personally.
+                </p>
+              </div>
+
+              {/* Direct channels with warm amber accents */}
+              <div className="space-y-4 pt-2 font-sans text-body-md text-sand/95">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20">
+                    <MessageCircle className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs uppercase tracking-wider text-amber font-semibold block">Telegram</span>
+                    <a href="https://t.me/abelgidey" target="_blank" rel="noreferrer" className="hover:text-amber transition-colors">
+                      @abelgidey
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs uppercase tracking-wider text-amber font-semibold block">Phone</span>
+                    <a href="tel:+15035550198" className="hover:text-amber transition-colors">
+                      (503) 555-0198
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20">
+                    <InstagramIcon className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs uppercase tracking-wider text-amber font-semibold block">Instagram</span>
+                    <a href="https://instagram.com/coach.avello" target="_blank" rel="noreferrer" className="hover:text-amber transition-colors">
+                      @coach.avello
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs uppercase tracking-wider text-amber font-semibold block">Portland Studio</span>
+                    <span>842 NW 23rd Ave, Portland, OR</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Contact Form (6 cols) */}
+            <div className="lg:col-span-6 bg-surface text-ink p-8 sm:p-10 rounded-xl shadow-level3 border border-sand">
+              {formSubmitted ? (
+                <div className="py-8 text-center flex flex-col items-center">
+                  <div className="w-14 h-14 rounded-full bg-tertiary-tint flex items-center justify-center text-primary mb-4 shadow-level1">
+                    <CheckCircle className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="font-serif text-2xl text-ink font-normal mb-2">
+                    Thank you. I&apos;ll be in touch soon.
+                  </h3>
+                  <p className="font-sans text-body-md text-ink-soft max-w-sm mx-auto leading-relaxed mb-6">
+                    Thanks for reaching out, <strong className="text-ink">{formName || "there"}</strong>. I review every message personally to see how coaching can best bend around your body and your schedule.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setFormSubmitted(false);
+                      setFormName("");
+                      setFormContact("");
+                      setFormGoal("");
+                    }}
+                    className="px-8 py-3.5 min-h-[44px] rounded-full bg-primary text-on-primary hover:bg-primary-deep transition-all font-sans text-label-md uppercase tracking-wider font-semibold shadow-level1"
+                  >
+                    Send another message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleContactSubmit} className="space-y-4">
+                  <div>
+                    <label className="block font-sans text-xs uppercase tracking-wider text-ink font-semibold mb-1.5">
+                      Your Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formName}
+                      onChange={(e) => setFormName(e.target.value)}
+                      placeholder="e.g. Alex Morgan"
+                      className="w-full px-4 py-3 rounded-lg bg-surface border border-sand text-ink font-sans text-body-md focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block font-sans text-xs uppercase tracking-wider text-ink font-semibold mb-1.5">
+                      Email or Phone / Telegram *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formContact}
+                      onChange={(e) => {
+                        setFormContact(e.target.value);
+                        if (formError) setFormError("");
+                      }}
+                      placeholder="you@email.com or @telegram"
+                      className={`w-full px-4 py-3 rounded-lg bg-surface border text-ink font-sans text-body-md focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm ${
+                        formError ? "border-error" : "border-sand"
+                      }`}
+                    />
+                    {formError && (
+                      <p className="font-sans text-xs text-error mt-1">{formError}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block font-sans text-xs uppercase tracking-wider text-ink font-semibold mb-1.5">
+                      Your Goal or Questions
+                    </label>
+                    <textarea
+                      rows={3}
+                      value={formGoal}
+                      onChange={(e) => setFormGoal(e.target.value)}
+                      placeholder="Tell me a bit about what you want to achieve or past injuries..."
+                      className="w-full px-4 py-3 rounded-lg bg-surface border border-sand text-ink font-sans text-body-md focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm resize-none"
+                    />
+                  </div>
+
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      className="w-full min-h-[44px] py-4 rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all font-sans text-label-md uppercase tracking-wider font-semibold shadow-level1 flex items-center justify-center gap-2 group"
+                    >
+                      <span>Send request</span>
+                      <ArrowRight className="w-4 h-4 transition-transform duration-fast group-hover:translate-x-1" />
+                    </button>
+                    <p className="font-sans text-xs text-ink-soft text-center mt-2.5">
+                      Human response within 24 hours. No aggressive sales tactics.
+                    </p>
+                  </div>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MOBILE STICKY BOTTOM BAR (Section 10) */}
+      {showMobileStickyBar && (
+        <div className="md:hidden fixed bottom-4 left-4 right-4 z-40 animate-in slide-in-from-bottom-4 duration-base">
+          <div className="bg-canvas/95 backdrop-blur-md p-2 rounded-full shadow-level3 border border-sand flex items-center justify-between">
+            <span className="font-serif text-sm text-ink pl-4 italic">
+              Precision first.
+            </span>
+            <button
+              onClick={() => openBooking("Individual Assessment")}
+              className="px-5 py-2.5 min-h-[40px] rounded-full bg-secondary text-on-secondary font-sans text-label-md uppercase tracking-wider font-semibold shadow-level1 flex items-center gap-1.5"
+            >
+              <span>Book a session</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

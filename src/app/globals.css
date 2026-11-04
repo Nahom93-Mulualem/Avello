@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-canvas: #F7F3EB;
+  --color-sand: #E8DFD1;
+  --color-surface: #FFFFFF;
+  --color-ink: #292C27;
+  --color-ink-soft: #434843;
+  --color-primary: #354B3B;
+  --color-primary-deep: #1F3426;
+  --color-secondary: #A8573A;
+  --color-secondary-soft: #C98262;
+  --color-tertiary: #879477;
+  --color-tertiary-tint: #E3E8DA;
+  --color-amber: #F0B35A;
+  --color-outline: #C3C8C1;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #292C27;
+    background-color: #F7F3EB;
+  }
+
+  body {
+    background-color: #F7F3EB;
+    color: #292C27;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, .font-serif, .editorial-heading {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 400;
+  }
+
+  ::selection {
+    background-color: rgba(168, 87, 58, 0.2);
+    color: #1F3426;
+  }
+
+  /* Accessible visible keyboard focus ring per Section 11 & 13 */
+  :focus-visible {
+    outline: 3px solid rgba(53, 75, 59, 0.8) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Arch mask for Abel's portrait */
+.arch-portrait {
+  border-top-left-radius: 120px;
+  border-top-right-radius: 120px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+/* Card Depth Tokens from DESIGN.md Section 5 */
+.shadow-level1 {
+  box-shadow: 0 4px 20px -2px rgba(41, 44, 39, 0.05);
+  border: 1px solid rgba(53, 75, 59, 0.08);
+}
+
+.shadow-level2 {
+  box-shadow: 0 12px 32px -4px rgba(41, 44, 39, 0.10);
+}
+
+.shadow-level3 {
+  box-shadow: 0 24px 48px -8px rgba(41, 44, 39, 0.14);
+}
+
+/* Smooth Marquee ticker animation */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: ticker 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
