@@ -155,10 +155,10 @@ export default function BookingModal({ isOpen, onClose, initialService }: Bookin
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full min-h-[44px] py-3.5 rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all font-sans text-label-md uppercase tracking-wider font-semibold shadow-level1 flex items-center justify-center gap-2 group"
+                  className="w-full min-h-[44px] py-3.5 rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all duration-200 ease-out font-sans text-label-md uppercase tracking-[0.14em] font-semibold shadow-level1 hover:shadow-[0_10px_24px_-4px_rgba(168,87,58,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-2.5 group overflow-hidden"
                 >
-                  <span>Send request</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-fast group-hover:translate-x-1" />
+                  <span className="transition-transform duration-200 ease-out group-hover:translate-x-0.5">Send request</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
                 </button>
                 <div className="flex items-center justify-center gap-1.5 mt-2.5 text-[11px] text-ink-soft">
                   <ShieldCheck className="w-3.5 h-3.5 text-tertiary" />

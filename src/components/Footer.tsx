@@ -159,11 +159,11 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Abel Gidey (Coach Avello) Personal Trainer. All rights reserved.</p>
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center gap-1.5 hover:text-ink transition-colors"
+            className="inline-flex items-center gap-2 hover:text-secondary transition-colors duration-200 group/top py-1"
             aria-label="Scroll back to top"
           >
-            <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5" />
+            <span className="transition-transform duration-200 ease-out group-hover/top:-translate-y-0.5">Back to top</span>
+            <ArrowUp className="w-3.5 h-3.5 transition-transform duration-200 ease-out group-hover/top:-translate-y-1 text-secondary" />
           </button>
         </div>
       </div>
