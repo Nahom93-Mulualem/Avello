@@ -96,7 +96,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
               {/* Action Button & Mobile Menu Trigger */}
               <div className="flex items-center gap-3">
                 <button
-                  onClick={onOpenBooking}
+                  onClick={() => onOpenBooking?.()}
                   className="inline-flex items-center justify-center gap-2.5 px-6 py-3 min-h-[44px] rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all duration-200 ease-out font-sans text-label-md uppercase tracking-[0.14em] font-semibold shadow-level1 hover:shadow-[0_8px_20px_-4px_rgba(168,87,58,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] group overflow-hidden"
                 >
                   <span className="transition-transform duration-200 ease-out group-hover:translate-x-0.5">Book a session</span>
