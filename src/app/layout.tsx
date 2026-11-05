@@ -5,11 +5,11 @@ import ClientShell from "@/components/ClientShell";
 export const metadata: Metadata = {
   title: "Abel Gidey | Personal Trainer • Precision first. Power follows.",
   description:
-    "Personal trainer built on mechanics rather than ego. Load goes up only when the movement is clean; power comes after precision. Private in Portland or online worldwide.",
+    "Personal trainer built on mechanics rather than ego. Load goes up only when the movement is clean; power comes after precision. Private in Addis Ababa or online worldwide.",
   keywords: [
     "Abel Gidey",
     "Coach Avello",
-    "Personal Trainer Portland",
+    "Personal Trainer Addis Ababa",
     "Weight Training Mechanics",
     "Movement Assessment",
     "Precision Strength",

@@ -39,24 +39,24 @@ export default function BookingModal({ isOpen, onClose, initialService }: Bookin
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/60 backdrop-blur-sm transition-all duration-base">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-ink/60 backdrop-blur-sm transition-all duration-base">
       <div 
-        className="relative w-full max-w-lg bg-surface rounded-xl shadow-level3 border border-sand overflow-hidden animate-in fade-in zoom-in-95 duration-base"
+        className="relative w-full max-w-lg max-h-[92vh] overflow-y-auto bg-surface rounded-2xl shadow-level3 border border-sand animate-in fade-in zoom-in-95 duration-base"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header (Dark Forest with Amber Accent) */}
-        <div className="bg-primary px-6 sm:px-8 py-5 text-on-primary flex items-center justify-between border-b border-primary-deep">
+        <div className="bg-primary px-5 sm:px-8 py-4 sm:py-5 text-on-primary flex items-center justify-between border-b border-primary-deep sticky top-0 z-10">
           <div>
-            <span className="font-sans text-[11px] uppercase tracking-wider font-semibold text-amber">
+            <span className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold text-amber block mb-0.5">
               Abel Gidey Personal Trainer
             </span>
-            <h3 className="font-serif text-2xl font-normal text-on-primary mt-0.5">
+            <h3 className="font-serif text-xl sm:text-2xl font-normal text-on-primary mt-0.5">
               Start with an assessment
             </h3>
           </div>
           <button 
             onClick={onClose}
-            className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-on-primary"
+            className="p-2 rounded-full hover:bg-white/10 transition-colors text-on-primary min-h-[40px] min-w-[40px] flex items-center justify-center"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -64,7 +64,7 @@ export default function BookingModal({ isOpen, onClose, initialService }: Bookin
         </div>
 
         {/* Content Body */}
-        <div className="p-6 sm:p-8 bg-canvas">
+        <div className="p-5 sm:p-8 bg-canvas">
           {submitted ? (
             <div className="py-8 text-center flex flex-col items-center">
               <div className="w-14 h-14 rounded-full bg-tertiary-tint flex items-center justify-center text-primary mb-4 shadow-level1">
@@ -94,14 +94,14 @@ export default function BookingModal({ isOpen, onClose, initialService }: Bookin
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. Alex Morgan"
-                  className="w-full px-4 py-3 rounded-lg bg-surface border border-sand text-ink font-sans text-body-md focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm"
+                  placeholder="e.g. Dawit Alemayehu"
+                  className="w-full px-4 py-3 rounded-lg bg-surface border border-sand text-ink font-sans text-base focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm"
                 />
               </div>
 
               <div>
                 <label className="block font-sans text-xs uppercase tracking-wider text-ink font-semibold mb-1.5">
-                  Email or Phone / Telegram *
+                  Phone / Telegram or Email *
                 </label>
                 <input
                   type="text"
@@ -111,8 +111,8 @@ export default function BookingModal({ isOpen, onClose, initialService }: Bookin
                     setContact(e.target.value);
                     if (errorMsg) setErrorMsg("");
                   }}
-                  placeholder="you@email.com or @telegram"
-                  className={`w-full px-4 py-3 rounded-lg bg-surface border text-ink font-sans text-body-md focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm ${
+                  placeholder="+251 9... or @telegram"
+                  className={`w-full px-4 py-3 rounded-lg bg-surface border text-ink font-sans text-base focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm ${
                     errorMsg ? "border-error" : "border-sand"
                   }`}
                 />
@@ -128,7 +128,7 @@ export default function BookingModal({ isOpen, onClose, initialService }: Bookin
                 <select
                   value={service}
                   onChange={(e) => setService(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-surface border border-sand text-ink font-sans text-body-md focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm"
+                  className="w-full px-4 py-3 rounded-lg bg-surface border border-sand text-ink font-sans text-base focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm"
                 >
                   <option value="Individual Assessment">Individual Assessment</option>
                   <option value="Weight Training">Weight Training</option>

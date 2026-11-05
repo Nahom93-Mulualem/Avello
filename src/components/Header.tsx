@@ -16,8 +16,8 @@ export default function Header({ onOpenBooking }: HeaderProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      // 40px threshold for sticky header background change
-      setScrolled(window.scrollY > 40);
+      // 20px threshold for sticky header background change
+      setScrolled(window.scrollY > 20);
 
       // Scroll progress percentage calculation
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -26,6 +26,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
       }
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -51,10 +52,11 @@ export default function Header({ onOpenBooking }: HeaderProps) {
       />
 
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-base ${scrolled
-            ? "bg-canvas/95 backdrop-blur-md shadow-level1 border-b border-sand py-3"
-            : "bg-transparent py-5"
-          }`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
+          scrolled
+            ? "bg-white/90 backdrop-blur-md shadow-level1 border-b border-sand py-3"
+            : "bg-white/80 backdrop-blur-md border-b border-sand/40 py-4 sm:py-5"
+        }`}
       >
         <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between">
           {/* Wordmark "Abel Gidey" */}
@@ -114,7 +116,7 @@ export default function Header({ onOpenBooking }: HeaderProps) {
 
             {/* Mobile Navigation Drawer */}
             {mobileMenuOpen && (
-              <div className="md:hidden bg-canvas border-b border-sand px-margin py-6 animate-in slide-in-from-top-4 duration-base">
+              <div className="md:hidden bg-white/95 backdrop-blur-md border-b border-sand shadow-level2 px-margin py-6 animate-in slide-in-from-top-4 duration-200">
                 <nav className="flex flex-col space-y-4">
                   {navLinks.map((link) => (
                     <a

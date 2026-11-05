@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { MessageCircle, Phone, MapPin, ArrowUp } from "lucide-react";
+import { Phone, MapPin, ArrowUp } from "lucide-react";
+
+function TelegramIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75l-2.48-1.63-1.2 1.15c-.13.13-.25.24-.51.24l.18-2.54 4.63-4.18c.2-.18-.04-.28-.31-.1l-5.73 3.61-2.46-.77c-.54-.17-.55-.54.11-.8l9.63-3.71c.45-.16.84.11.7.7z"/>
+    </svg>
+  );
+}
 
 function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -108,7 +116,7 @@ export default function Footer() {
             </p>
             <ul className="space-y-2.5 font-sans text-body-md text-ink-soft">
               <li className="flex items-center gap-2.5">
-                <MessageCircle className="w-4 h-4 text-secondary flex-shrink-0" />
+                <TelegramIcon className="w-4 h-4 text-secondary flex-shrink-0" />
                 <a
                   href="https://t.me/abelgidey"
                   target="_blank"
@@ -138,17 +146,17 @@ export default function Footer() {
               <li className="flex items-center gap-2.5">
                 <TikTokIcon className="w-4 h-4 text-secondary flex-shrink-0" />
                 <a
-                  href="https://tiktok.com/@coach.avello"
+                  href="https://tiktok.com/@.coach.avelo"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-ink transition-colors"
                 >
-                  TikTok: @coach.avello
+                  TikTok: @.coach.avelo
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <MapPin className="w-4 h-4 text-secondary flex-shrink-0" />
-                <span>Portland, Oregon Atelier</span>
+                <span>Addis Ababa Atelier, Ethiopia</span>
               </li>
             </ul>
           </div>

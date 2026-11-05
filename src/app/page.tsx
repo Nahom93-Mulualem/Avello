@@ -5,16 +5,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { 
   ArrowRight, 
-  MessageCircle, 
   Phone, 
   MapPin, 
   CheckCircle, 
   Quote, 
-  Sparkles,
-  Calendar,
-  ShieldCheck
+  ShieldCheck 
 } from "lucide-react";
 import { useBooking } from "@/components/ClientShell";
+
+function TelegramIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75l-2.48-1.63-1.2 1.15c-.13.13-.25.24-.51.24l.18-2.54 4.63-4.18c.2-.18-.04-.28-.31-.1l-5.73 3.61-2.46-.77c-.54-.17-.55-.54.11-.8l9.63-3.71c.45-.16.84.11.7.7z"/>
+    </svg>
+  );
+}
 
 function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -113,89 +118,115 @@ export default function HomePage() {
     },
   ];
 
+  // Localized Ethiopian Testimonials
   const results = [
     {
-      quote: "For seven years, back spasms made lifting my kids feel like a gamble. Abel taught me deep pelvic positioning and breathing. Today, I deadlift 150 lbs completely pain-free.",
-      author: "Sarah M.",
-      context: "Architect, 42 • Training 14 months",
+      quote: "Long hours coding and daily traffic on Bole Road had my lower back locked up every evening. Abel focused purely on hip mechanics and breathing before touching heavy weights. Today, I'm lifting and moving pain-free with steady all-day energy.",
+      author: "Dawit K.",
+      context: "Tech Lead, 37 • Bole, Addis Ababa",
     },
     {
-      quote: "By 35, twelve-hour tech sprints left me running on 4 cold brews. Abel treated stress as biological data. We focused on steady breathing and mechanics. My resting HR dropped 14 bpm.",
-      author: "Marcus T.",
-      context: "Software Engineer, 36 • Half-marathoner",
+      quote: "Between construction site visits across Addis and carrying two active toddlers, my knees were constantly inflamed. Abel taught me how joint stacking works. Within 4 months, my pain vanished and I hit my first clean 65kg trap-bar deadlift.",
+      author: "Bethlehem T.",
+      context: "Architect, 42 • Old Airport, Addis Ababa",
     },
     {
-      quote: "At 58, gym culture made me feel invisible. Abel built my bone density through farmer carries and hex-bar pulls. My latest DEXA scan showed an 18% improvement.",
-      author: "Linda R.",
-      context: "Professor, 58 • Multi-day trail hiker",
+      quote: "At 54, traditional commercial gyms felt careless with joints. Abel built a structured, respectful roadmap around my bone density and stamina. Our weekend family hikes up Entoto Mountain feel completely effortless now.",
+      author: "Yonas M.",
+      context: "Civil Engineer, 54 • CMC, Addis Ababa",
     },
   ];
 
   return (
-    <div className="flex flex-col w-full bg-canvas text-ink">
+    <div className="flex flex-col w-full bg-canvas text-ink overflow-x-hidden">
       {/* 1. HERO SECTION (Canvas Background) */}
-      <section className="relative w-full pt-10 sm:pt-16 pb-16 md:pb-24 overflow-hidden">
-        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Editorial Text (7 cols) */}
+      <section className="relative w-full pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-20 overflow-hidden">
+        <div className="max-w-container mx-auto px-4 sm:px-6 md:px-margin-tablet lg:px-margin-desktop">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Editorial Content (7 cols) */}
             <div className="lg:col-span-7 flex flex-col items-start z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sand text-ink text-[11px] font-bold tracking-[0.22em] uppercase border border-outline/40 shadow-xs">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand/80 border border-outline/30 mb-4 shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-secondary" />
-                <span>Coach Avello • Private Atelier &amp; Online</span>
+                <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-secondary">
+                  PRECISION STRENGTH &amp; BIOMECHANICS
+                </span>
               </div>
 
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-[62px] text-ink font-normal leading-[1.22] sm:leading-[1.18] lg:leading-[1.16] tracking-[-0.015em] my-6">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[58px] text-ink font-normal leading-[1.18] sm:leading-[1.15] lg:leading-[1.12] tracking-[-0.02em] mb-4 sm:mb-5">
                 Get <span className="italic font-medium text-secondary">stronger</span>, one clean rep at a time.
               </h1>
 
-              <p className="font-sans text-base sm:text-lg text-ink-soft max-w-xl leading-relaxed sm:leading-[1.8] mb-8">
+              <p className="font-sans text-base sm:text-lg text-ink-soft max-w-xl leading-relaxed sm:leading-[1.75] mb-6 sm:mb-7">
                 Friendly, precise coaching built around your body, your goal and your week. Mechanics come before load; power follows precision.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto mb-7 sm:mb-8">
                 <button
                   onClick={() => openBooking("Individual Assessment")}
-                  className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[44px] rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all duration-200 ease-out font-sans text-label-md uppercase tracking-[0.14em] font-semibold shadow-level1 hover:shadow-[0_10px_24px_-4px_rgba(168,87,58,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] group overflow-hidden"
+                  className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[48px] rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all duration-200 ease-out font-sans text-label-md uppercase tracking-[0.14em] font-semibold shadow-level1 hover:shadow-[0_10px_24px_-4px_rgba(168,87,58,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] group overflow-hidden w-full sm:w-auto"
                 >
                   <span className="transition-transform duration-200 ease-out group-hover:translate-x-0.5">Start with an assessment</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
                 </button>
                 <a
                   href="#services"
-                  className="inline-flex items-center justify-center gap-1.5 px-6 py-3.5 min-h-[44px] font-sans text-body-md text-primary font-semibold hover:text-secondary transition-all duration-200 ease-out underline-offset-8 hover:underline group/offer"
+                  className="inline-flex items-center justify-center gap-1.5 px-6 py-3.5 min-h-[48px] font-sans text-body-md text-primary font-semibold hover:text-secondary transition-all duration-200 ease-out underline-offset-8 hover:underline group/offer w-full sm:w-auto text-center"
                 >
                   <span className="transition-transform duration-200 ease-out group-hover/offer:translate-x-0.5">See what I offer</span>
                   <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover/offer:opacity-100 group-hover/offer:translate-x-0 transition-all duration-200 ease-out text-secondary" />
                 </a>
               </div>
 
-              {/* Quiet Evidence Strip */}
-              <div className="pt-8 mt-8 border-t border-sand/80 flex flex-wrap items-center gap-6 text-xs text-ink-soft font-sans">
-                <span className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-tertiary" />
-                  <span className="tracking-wide">Mechanics-First Coaching</span>
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-tertiary" />
-                  <span className="tracking-wide">Private In-Person &amp; Online Worldwide</span>
-                </span>
+              {/* Editorial Credibility Strip (Grounds and balances the space) */}
+              <div className="pt-6 border-t border-outline/30 w-full grid grid-cols-3 gap-3 sm:gap-4">
+                <div>
+                  <span className="font-serif text-2xl sm:text-3xl font-normal text-primary block leading-none">1-on-1</span>
+                  <span className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.14em] text-ink-soft font-semibold mt-1.5 block">Private Atelier</span>
+                </div>
+                <div className="border-x border-outline/25 px-2.5 sm:px-4">
+                  <span className="font-serif text-2xl sm:text-3xl font-normal text-primary block leading-none">10+ Yrs</span>
+                  <span className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.14em] text-ink-soft font-semibold mt-1.5 block">Biomechanics</span>
+                </div>
+                <div>
+                  <span className="font-serif text-2xl sm:text-3xl font-normal text-secondary block leading-none">Bole</span>
+                  <span className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.14em] text-ink-soft font-semibold mt-1.5 block">Addis Ababa</span>
+                </div>
               </div>
             </div>
 
-            {/* Right Visual Showcase (5 cols) */}
-            <div className="lg:col-span-5 relative flex justify-center">
-              <div className="relative w-full max-w-md aspect-[4/5] rounded-hero overflow-hidden shadow-level2 bg-sand border border-outline/20">
-                <Image
-                  src="/images/dumbbell-curl.png"
-                  alt="Abel Gidey coaching in clean modern gym setting with warm lighting"
-                  fill
-                  className="object-cover transition-transform duration-slow hover:scale-105"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent flex items-end p-6 text-on-primary">
-                  <p className="font-serif text-lg italic text-canvas">
-                    &ldquo;Precision first. Power follows.&rdquo;
-                  </p>
+            {/* Right Visual Showcase (5 cols) with Layered Depth */}
+            <div className="lg:col-span-5 relative flex justify-center w-full">
+              <div className="relative w-full max-w-sm sm:max-w-md aspect-[4/5] mx-auto group">
+                {/* Architectural background accent frame */}
+                <div className="absolute -inset-2.5 sm:-inset-3 bg-sand/70 rounded-[28px] -rotate-1 border border-outline/30 -z-10 transition-transform duration-500 group-hover:rotate-0" />
+                
+                {/* Image card with rounded corners and shadow */}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-level2 bg-sand border border-outline/20">
+                  <Image
+                    src="/images/dumbbell-curl.png"
+                    alt="Abel Gidey coaching with precision movement mechanics"
+                    fill
+                    className="object-cover transition-transform duration-slow group-hover:scale-105"
+                    priority
+                  />
+                  
+                  {/* Floating Location Badge */}
+                  <div className="absolute top-4 left-4 bg-canvas/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-sand/80 shadow-sm flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
+                    <span className="font-sans text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-ink">Addis Ababa Studio</span>
+                  </div>
+
+                  {/* Floating Motto & Method Card */}
+                  <div className="absolute bottom-4 left-4 right-4 bg-surface/95 backdrop-blur-md p-4 rounded-xl shadow-level3 border border-sand flex items-center justify-between">
+                    <div>
+                      <p className="font-serif text-sm sm:text-base italic text-primary leading-tight">&ldquo;Precision first. Power follows.&rdquo;</p>
+                      <p className="font-sans text-[10px] uppercase tracking-[0.14em] text-secondary font-semibold mt-0.5">Coach Avello Method</p>
+                    </div>
+                    <div className="text-right pl-3 border-l border-outline/30 flex-shrink-0">
+                      <span className="font-serif text-lg font-bold text-ink">100%</span>
+                      <span className="block font-sans text-[9px] uppercase tracking-wider text-ink-soft">Mechanics</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -204,8 +235,8 @@ export default function HomePage() {
       </section>
 
       {/* 2. SERVICES MARQUEE (Slow, Pausable Ribbon on Sand) */}
-      <div className="w-full bg-sand py-4 border-y border-outline/30 overflow-hidden select-none">
-        <div className="animate-marquee whitespace-nowrap flex items-center gap-8 font-sans text-label-md uppercase tracking-[0.2em] text-primary font-bold">
+      <div className="w-full bg-sand py-3.5 sm:py-4 border-y border-outline/30 overflow-hidden select-none">
+        <div className="animate-marquee whitespace-nowrap flex items-center gap-6 sm:gap-8 font-sans text-xs sm:text-label-md uppercase tracking-[0.18em] sm:tracking-[0.2em] text-primary font-bold">
           <span>Weight Training</span>
           <span className="text-secondary">•</span>
           <span>Individual Assessment</span>
@@ -239,12 +270,12 @@ export default function HomePage() {
       </div>
 
       {/* 3. ABOUT ABEL (Sand Background + Arch Shape Portrait) */}
-      <section id="about" className="w-full bg-sand py-section-gap-mobile md:py-section-gap">
-        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section id="about" className="w-full bg-sand py-14 sm:py-20 md:py-section-gap">
+        <div className="max-w-container mx-auto px-4 sm:px-6 md:px-margin-tablet lg:px-margin-desktop">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Arch-shaped portrait (5 cols) */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-sm aspect-[3/4] arch-portrait overflow-hidden shadow-level2 bg-canvas border border-outline/30">
+            <div className="lg:col-span-5 flex justify-center w-full">
+              <div className="relative w-full max-w-[260px] sm:max-w-sm aspect-[3/4] arch-portrait overflow-hidden shadow-level2 bg-canvas border border-outline/30">
                 <Image
                   src="/images/trainer-profile.jpg"
                   alt="Abel Gidey standing portrait"
@@ -259,35 +290,35 @@ export default function HomePage() {
               <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.24em] text-secondary font-bold block mb-3">
                 WHO ABEL IS
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-[44px] text-ink font-normal leading-[1.22] tracking-tight mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-[44px] text-ink font-normal leading-[1.22] tracking-tight mb-5 sm:mb-6">
                 Coaching on mechanics rather than <span className="italic font-medium text-primary">ego</span>.
               </h2>
-              <div className="space-y-5 font-sans mb-8">
-                <p className="text-base sm:text-lg text-ink font-normal leading-[1.7] border-l-2 border-secondary/70 pl-4 py-0.5">
+              <div className="space-y-4 sm:space-y-5 font-sans mb-7 sm:mb-8">
+                <p className="text-base sm:text-lg text-ink font-normal leading-[1.7] border-l-2 border-secondary/70 pl-3.5 sm:pl-4 py-0.5">
                   I coach on mechanics rather than ego. Load goes up only when the movement is clean; power comes after precision. Every plan starts from your body, not from an arbitrary internet template.
                 </p>
-                <p className="text-[15px] sm:text-base text-ink-soft leading-[1.78]">
-                  Whether we meet in person inside our quiet private Portland atelier or work together online, the philosophy remains constant: warm, encouraging, and intellectually rigorous. Never loud, never shaming, and never &ldquo;no pain, no gain.&rdquo;
+                <p className="text-[15px] sm:text-base text-ink-soft leading-[1.75] sm:leading-[1.78]">
+                  Whether we meet in person inside our private Addis Ababa atelier or work together online, the philosophy remains constant: warm, encouraging, and intellectually rigorous. Never loud, never shaming, and never &ldquo;no pain, no gain.&rdquo;
                 </p>
-                <p className="text-[15px] sm:text-base text-ink-soft leading-[1.78]">
+                <p className="text-[15px] sm:text-base text-ink-soft leading-[1.75] sm:leading-[1.78]">
                   I work with adults who want to get stronger safely, individuals returning from injury or long sedentary breaks, and busy people who require a plan that bends gracefully around their week.
                 </p>
               </div>
 
               <div className="pt-6 flex flex-wrap items-center gap-6 sm:gap-8 border-t border-outline/30">
                 <div>
-                  <p className="font-serif text-3xl sm:text-4xl text-primary font-normal">10+</p>
-                  <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink-soft font-semibold mt-0.5">Years Coaching</p>
+                  <p className="font-serif text-2xl sm:text-3xl md:text-4xl text-primary font-normal">10+</p>
+                  <p className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-ink-soft font-semibold mt-0.5">Years Coaching</p>
                 </div>
-                <div className="h-10 w-px bg-outline/40" />
+                <div className="h-9 sm:h-10 w-px bg-outline/40" />
                 <div>
-                  <p className="font-serif text-3xl sm:text-4xl text-primary font-normal">NASM &amp; FMS</p>
-                  <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink-soft font-semibold mt-0.5">Movement Screening</p>
+                  <p className="font-serif text-2xl sm:text-3xl md:text-4xl text-primary font-normal">NASM &amp; FMS</p>
+                  <p className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-ink-soft font-semibold mt-0.5">Movement Screening</p>
                 </div>
-                <div className="h-10 w-px bg-outline/40" />
+                <div className="h-9 sm:h-10 w-px bg-outline/40" />
                 <div>
-                  <p className="font-serif text-3xl sm:text-4xl text-primary font-normal">Pn2 Master</p>
-                  <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-ink-soft font-semibold mt-0.5">Nutritional Practice</p>
+                  <p className="font-serif text-2xl sm:text-3xl md:text-4xl text-primary font-normal">Pn2 Master</p>
+                  <p className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-ink-soft font-semibold mt-0.5">Nutritional Practice</p>
                 </div>
               </div>
             </div>
@@ -296,13 +327,13 @@ export default function HomePage() {
       </section>
 
       {/* 4. THE SEVEN SERVICES (Canvas Background + Soft Warm Shadow & Highlight on Hover) */}
-      <section id="services" className="w-full bg-canvas py-section-gap-mobile md:py-section-gap">
-        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
-          <div className="max-w-2xl mb-14">
+      <section id="services" className="w-full bg-canvas py-14 sm:py-20 md:py-section-gap">
+        <div className="max-w-container mx-auto px-4 sm:px-6 md:px-margin-tablet lg:px-margin-desktop">
+          <div className="max-w-2xl mb-10 sm:mb-14">
             <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.24em] text-secondary font-bold block mb-3">
               THE SEVEN SERVICES
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-[44px] text-ink font-normal leading-[1.22] tracking-tight mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-[44px] text-ink font-normal leading-[1.22] tracking-tight mb-3 sm:mb-4">
               Coaching that <span className="italic font-medium text-primary">fits</span> your life.
             </h2>
             <p className="font-sans text-base sm:text-lg text-ink-soft leading-relaxed max-w-xl">
@@ -310,31 +341,31 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
             {services.map((item) => (
               <div
                 key={item.num}
                 onClick={() => openBooking(item.title)}
-                className="bg-surface rounded-2xl p-8 shadow-sm hover:shadow-[0_16px_32px_-8px_rgba(168,87,58,0.18),0_4px_12px_-4px_rgba(41,44,39,0.06)] hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between group border border-sand hover:border-secondary/50 cursor-pointer relative"
+                className="bg-surface rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-[0_16px_32px_-8px_rgba(168,87,58,0.18),0_4px_12px_-4px_rgba(41,44,39,0.06)] hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between group border border-sand hover:border-secondary/50 cursor-pointer relative"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="font-serif text-3xl font-medium text-secondary-soft group-hover:text-secondary group-hover:scale-105 transition-all duration-200">
+                  <div className="flex items-center justify-between mb-4 sm:mb-5">
+                    <span className="font-serif text-2xl sm:text-3xl font-medium text-secondary-soft group-hover:text-secondary group-hover:scale-105 transition-all duration-200">
                       {item.num}
                     </span>
-                    <span className="font-sans text-[11px] font-bold uppercase tracking-[0.14em] px-3 py-1 rounded-full bg-tertiary-tint text-primary border border-tertiary/20 group-hover:border-secondary/30 transition-colors">
+                    <span className="font-sans text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em] px-2.5 sm:px-3 py-1 rounded-full bg-tertiary-tint text-primary border border-tertiary/20 group-hover:border-secondary/30 transition-colors">
                       {item.tag}
                     </span>
                   </div>
-                  <h3 className="font-serif text-2xl text-ink font-normal mb-3 group-hover:text-primary transition-colors leading-snug">
+                  <h3 className="font-serif text-xl sm:text-2xl text-ink font-normal mb-2.5 group-hover:text-primary transition-colors leading-snug">
                     {item.title}
                   </h3>
-                  <p className="font-sans text-[15px] sm:text-base text-ink-soft leading-[1.72]">
+                  <p className="font-sans text-[14px] sm:text-[15px] md:text-base text-ink-soft leading-[1.7]">
                     {item.desc}
                   </p>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-sand flex items-center justify-between">
+                <div className="pt-5 sm:pt-6 mt-5 sm:mt-6 border-t border-sand flex items-center justify-between">
                   <button
                     type="button"
                     className="font-sans text-label-md uppercase tracking-[0.14em] text-primary font-bold group-hover:text-secondary transition-colors inline-flex items-center gap-2 group/btn py-1"
@@ -347,23 +378,23 @@ export default function HomePage() {
             ))}
 
             {/* 8th Final CTA Card (per Section 6 spec) */}
-            <div className="bg-sand/80 hover:bg-sand rounded-2xl p-8 shadow-sm hover:shadow-[0_16px_32px_-8px_rgba(168,87,58,0.18)] hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between border border-outline/40 hover:border-secondary/50">
+            <div className="bg-sand/80 hover:bg-sand rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-[0_16px_32px_-8px_rgba(168,87,58,0.18)] hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between border border-outline/40 hover:border-secondary/50">
               <div>
                 <span className="font-sans text-[11px] uppercase tracking-[0.22em] text-secondary font-bold block mb-2">
                   GET STARTED
                 </span>
-                <h3 className="font-serif text-2xl text-ink font-normal mt-2 mb-3 leading-snug">
+                <h3 className="font-serif text-xl sm:text-2xl text-ink font-normal mt-1 mb-2.5 leading-snug">
                   Ready to start with clean mechanics?
                 </h3>
-                <p className="font-sans text-[15px] sm:text-base text-ink-soft leading-[1.72]">
+                <p className="font-sans text-[14px] sm:text-[15px] md:text-base text-ink-soft leading-[1.7]">
                   Every journey begins with an audit of how your joints, spine, and breath actually coordinate. No high-pressure commitments.
                 </p>
               </div>
 
-              <div className="pt-6 mt-6">
+              <div className="pt-5 sm:pt-6 mt-5 sm:mt-6">
                 <button
                   onClick={() => openBooking("Individual Assessment")}
-                  className="w-full min-h-[44px] py-3.5 rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all duration-200 ease-out font-sans text-label-md uppercase tracking-[0.14em] font-semibold shadow-level1 hover:shadow-[0_10px_24px_-4px_rgba(168,87,58,0.35)] active:scale-[0.98] flex items-center justify-center gap-2.5 group/btn8"
+                  className="w-full min-h-[46px] py-3.5 rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all duration-200 ease-out font-sans text-label-md uppercase tracking-[0.14em] font-semibold shadow-level1 hover:shadow-[0_10px_24px_-4px_rgba(168,87,58,0.35)] active:scale-[0.98] flex items-center justify-center gap-2.5 group/btn8"
                 >
                   <span className="transition-transform duration-200 ease-out group-hover/btn8:translate-x-0.5">Book your assessment</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 ease-out group-hover/btn8:translate-x-1" />
@@ -375,13 +406,13 @@ export default function HomePage() {
       </section>
 
       {/* 5. HOW COACHING WORKS (Sand Background + Warm Subtle Shadows) */}
-      <section id="how-it-works" className="w-full bg-sand py-section-gap-mobile md:py-section-gap border-y border-outline/30">
-        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+      <section id="how-it-works" className="w-full bg-sand py-14 sm:py-20 md:py-section-gap border-y border-outline/30">
+        <div className="max-w-container mx-auto px-4 sm:px-6 md:px-margin-tablet lg:px-margin-desktop">
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
             <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.24em] text-secondary font-bold block mb-3">
               HOW COACHING WORKS
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-[44px] text-ink font-normal leading-[1.22] tracking-tight mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-[44px] text-ink font-normal leading-[1.22] tracking-tight mb-3 sm:mb-4">
               How coaching <span className="italic font-medium text-primary">works</span>.
             </h2>
             <p className="font-sans text-base sm:text-lg text-ink-soft leading-relaxed max-w-xl mx-auto">
@@ -389,57 +420,57 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {/* Step 1 */}
-            <div className="bg-surface rounded-2xl p-8 shadow-sm hover:shadow-[0_14px_28px_-6px_rgba(53,75,59,0.14)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between border border-primary/10 group">
+            <div className="bg-surface rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-[0_14px_28px_-6px_rgba(53,75,59,0.14)] hover:border-primary/40 hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between border border-primary/10 group">
               <div>
-                <div className="w-11 h-11 rounded-full bg-primary text-on-primary flex items-center justify-center font-serif text-lg font-normal mb-6 shadow-sm group-hover:scale-105 transition-transform duration-200">
+                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-full bg-primary text-on-primary flex items-center justify-center font-serif text-base sm:text-lg font-normal mb-5 sm:mb-6 shadow-sm group-hover:scale-105 transition-transform duration-200">
                   1
                 </div>
-                <h3 className="font-serif text-2xl text-ink font-normal mb-3 leading-snug">
+                <h3 className="font-serif text-xl sm:text-2xl text-ink font-normal mb-2.5 leading-snug">
                   Movement Assessment
                 </h3>
-                <p className="font-sans text-[15px] sm:text-base text-ink-soft leading-[1.72]">
+                <p className="font-sans text-[14px] sm:text-[15px] md:text-base text-ink-soft leading-[1.7]">
                   Before anything is programmed, we audit how you actually move. We check joint mobility, pelvic alignment, and posture. Zero intimidation.
                 </p>
               </div>
-              <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-secondary font-bold mt-6 pt-4 border-t border-sand">
+              <p className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-secondary font-bold mt-5 sm:mt-6 pt-4 border-t border-sand">
                 Step 01 • The Baseline
               </p>
             </div>
 
             {/* Step 2 */}
-            <div className="bg-surface rounded-2xl p-8 shadow-sm hover:shadow-[0_14px_28px_-6px_rgba(168,87,58,0.14)] hover:border-secondary/40 hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between border border-primary/10 group">
+            <div className="bg-surface rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-[0_14px_28px_-6px_rgba(168,87,58,0.14)] hover:border-secondary/40 hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between border border-primary/10 group">
               <div>
-                <div className="w-11 h-11 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-serif text-lg font-normal mb-6 shadow-sm group-hover:scale-105 transition-transform duration-200">
+                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-serif text-base sm:text-lg font-normal mb-5 sm:mb-6 shadow-sm group-hover:scale-105 transition-transform duration-200">
                   2
                 </div>
-                <h3 className="font-serif text-2xl text-ink font-normal mb-3 leading-snug">
+                <h3 className="font-serif text-xl sm:text-2xl text-ink font-normal mb-2.5 leading-snug">
                   Written Roadmap
                 </h3>
-                <p className="font-sans text-[15px] sm:text-base text-ink-soft leading-[1.72]">
+                <p className="font-sans text-[14px] sm:text-[15px] md:text-base text-ink-soft leading-[1.7]">
                   A custom plan for your goal, your equipment, and your week. Designed to bend around work and family life so progress stays uninterrupted.
                 </p>
               </div>
-              <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-secondary font-bold mt-6 pt-4 border-t border-sand">
+              <p className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-secondary font-bold mt-5 sm:mt-6 pt-4 border-t border-sand">
                 Step 02 • The Blueprint
               </p>
             </div>
 
             {/* Step 3 */}
-            <div className="bg-surface rounded-2xl p-8 shadow-sm hover:shadow-[0_14px_28px_-6px_rgba(31,52,38,0.16)] hover:border-primary-deep/40 hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between border border-primary/10 group">
+            <div className="bg-surface rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-[0_14px_28px_-6px_rgba(31,52,38,0.16)] hover:border-primary-deep/40 hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between border border-primary/10 group">
               <div>
-                <div className="w-11 h-11 rounded-full bg-primary-deep text-on-primary flex items-center justify-center font-serif text-lg font-normal mb-6 shadow-sm group-hover:scale-105 transition-transform duration-200">
+                <div className="w-10 sm:w-11 h-10 sm:h-11 rounded-full bg-primary-deep text-on-primary flex items-center justify-center font-serif text-base sm:text-lg font-normal mb-5 sm:mb-6 shadow-sm group-hover:scale-105 transition-transform duration-200">
                   3
                 </div>
-                <h3 className="font-serif text-2xl text-ink font-normal mb-3 leading-snug">
+                <h3 className="font-serif text-xl sm:text-2xl text-ink font-normal mb-2.5 leading-snug">
                   Ongoing Coaching
                 </h3>
-                <p className="font-sans text-[15px] sm:text-base text-ink-soft leading-[1.72]">
+                <p className="font-sans text-[14px] sm:text-[15px] md:text-base text-ink-soft leading-[1.7]">
                   Private sessions in the gym or structured online delivery. Constant technical refinement, recovery advice, and calm accountability.
                 </p>
               </div>
-              <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-secondary font-bold mt-6 pt-4 border-t border-sand">
+              <p className="font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-secondary font-bold mt-5 sm:mt-6 pt-4 border-t border-sand">
                 Step 03 • The Progression
               </p>
             </div>
@@ -448,49 +479,46 @@ export default function HomePage() {
       </section>
 
       {/* 6. CLIENT RESULTS (Canvas Background + Heavy Stylized Italic Serif Quotes) */}
-      <section id="results" className="w-full bg-canvas py-section-gap-mobile md:py-section-gap">
-        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
-          <div className="max-w-2xl mb-14">
+      <section id="results" className="w-full bg-canvas py-14 sm:py-20 md:py-section-gap">
+        <div className="max-w-container mx-auto px-4 sm:px-6 md:px-margin-tablet lg:px-margin-desktop">
+          <div className="max-w-2xl mb-10 sm:mb-14">
             <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.24em] text-secondary font-bold block mb-3">
               REAL EXPERIENCES
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-[44px] text-ink font-normal leading-[1.22] tracking-tight mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-[44px] text-ink font-normal leading-[1.22] tracking-tight">
               Results that <span className="italic font-medium text-primary">last</span>.
             </h2>
-            <p className="font-sans text-base sm:text-lg text-ink-soft leading-relaxed max-w-xl">
-              Real client quotes only. No artificial claims or extreme 30-day gimmicks.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {results.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-sand/70 hover:bg-sand rounded-2xl p-8 sm:p-9 shadow-sm hover:shadow-[0_16px_32px_-8px_rgba(168,87,58,0.16)] hover:border-secondary/40 hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between border border-outline/40 group relative"
+                className="bg-sand/70 hover:bg-sand rounded-2xl p-6 sm:p-9 shadow-sm hover:shadow-[0_16px_32px_-8px_rgba(168,87,58,0.16)] hover:border-secondary/40 hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between border border-outline/40 group relative"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-serif text-5xl leading-none text-secondary/40 select-none block font-bold">
+                    <span className="font-serif text-4xl sm:text-5xl leading-none text-secondary/40 select-none block font-bold">
                       &ldquo;
                     </span>
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-canvas/80 text-[11px] font-semibold tracking-wider uppercase text-tertiary border border-outline/30">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-canvas/80 text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase text-tertiary border border-outline/30">
                       Verified Client
                     </span>
                   </div>
-                  <p className="font-serif italic font-medium sm:font-semibold text-lg sm:text-[21px] text-primary-deep leading-[1.62] mb-8 tracking-tight">
+                  <p className="font-serif italic font-medium sm:font-semibold text-base sm:text-lg md:text-[20px] text-primary-deep leading-[1.62] mb-6 sm:mb-8 tracking-tight">
                     &ldquo;{item.quote}&rdquo;
                   </p>
                 </div>
 
-                <div className="pt-5 border-t border-outline/30 flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-full bg-secondary/15 text-secondary flex items-center justify-center font-serif text-base font-bold flex-shrink-0 border border-secondary/25">
+                <div className="pt-4 sm:pt-5 border-t border-outline/30 flex items-center gap-3 sm:gap-3.5">
+                  <div className="w-9 sm:w-10 h-9 sm:h-10 rounded-full bg-secondary/15 text-secondary flex items-center justify-center font-serif text-sm sm:text-base font-bold flex-shrink-0 border border-secondary/25">
                     {item.author[0]}
                   </div>
                   <div>
-                    <p className="font-sans font-bold text-ink text-base tracking-wide">
+                    <p className="font-sans font-bold text-ink text-sm sm:text-base tracking-wide">
                       {item.author}
                     </p>
-                    <p className="font-sans text-xs uppercase tracking-[0.12em] text-secondary font-semibold mt-0.5">
+                    <p className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.12em] text-secondary font-semibold mt-0.5">
                       {item.context}
                     </p>
                   </div>
@@ -502,16 +530,16 @@ export default function HomePage() {
       </section>
 
       {/* 7. BOOKING & CONTACT (Dark Forest #354B3B / #1F3426 with Amber #F0B35A) */}
-      <section id="contact" className="w-full bg-primary py-section-gap-mobile md:py-section-gap text-on-primary">
-        <div className="max-w-container mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <section id="contact" className="w-full bg-primary py-14 sm:py-20 md:py-section-gap text-on-primary">
+        <div className="max-w-container mx-auto px-4 sm:px-6 md:px-margin-tablet lg:px-margin-desktop">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Info & Channels (6 cols) */}
-            <div className="lg:col-span-6 space-y-8">
+            <div className="lg:col-span-6 space-y-6 sm:space-y-8">
               <div>
                 <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.24em] text-amber font-bold block mb-3">
                   DIRECT ACCESS &amp; BOOKING
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl md:text-[44px] text-on-primary font-normal mt-2 mb-4 leading-[1.22] tracking-tight">
+                <h2 className="font-serif text-2xl sm:text-3xl md:text-[44px] text-on-primary font-normal mt-2 mb-3 sm:mb-4 leading-[1.22] tracking-tight">
                   Start with a calm <span className="italic font-medium text-amber">conversation</span>.
                 </h2>
                 <p className="font-sans text-base sm:text-lg text-sand/90 leading-relaxed max-w-lg">
@@ -520,69 +548,69 @@ export default function HomePage() {
               </div>
 
               {/* Direct channels with warm amber accents */}
-              <div className="space-y-4 pt-2 font-sans text-body-md text-sand/95">
+              <div className="space-y-3.5 sm:space-y-4 pt-2 font-sans text-body-md text-sand/95">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20">
-                    <MessageCircle className="w-4 h-4" />
+                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20 flex-shrink-0">
+                    <TelegramIcon className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase tracking-wider text-amber font-semibold block">Telegram</span>
-                    <a href="https://t.me/abelgidey" target="_blank" rel="noreferrer" className="hover:text-amber transition-colors">
+                    <span className="text-[11px] uppercase tracking-wider text-amber font-semibold block">Telegram</span>
+                    <a href="https://t.me/abelgidey" target="_blank" rel="noreferrer" className="hover:text-amber transition-colors text-sm sm:text-base">
                       @abelgidey
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20">
+                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20 flex-shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase tracking-wider text-amber font-semibold block">Phone</span>
-                    <a href="tel:+251911234567" className="hover:text-amber transition-colors">
+                    <span className="text-[11px] uppercase tracking-wider text-amber font-semibold block">Phone</span>
+                    <a href="tel:+251911234567" className="hover:text-amber transition-colors text-sm sm:text-base">
                       +251 911 234 567
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20">
+                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20 flex-shrink-0">
                     <InstagramIcon className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase tracking-wider text-amber font-semibold block">Instagram</span>
-                    <a href="https://instagram.com/coach.avello" target="_blank" rel="noreferrer" className="hover:text-amber transition-colors">
+                    <span className="text-[11px] uppercase tracking-wider text-amber font-semibold block">Instagram</span>
+                    <a href="https://instagram.com/coach.avello" target="_blank" rel="noreferrer" className="hover:text-amber transition-colors text-sm sm:text-base">
                       @coach.avello
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20">
+                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20 flex-shrink-0">
                     <TikTokIcon className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase tracking-wider text-amber font-semibold block">TikTok</span>
-                    <a href="https://tiktok.com/@coach.avello" target="_blank" rel="noreferrer" className="hover:text-amber transition-colors">
-                      @coach.avello
+                    <span className="text-[11px] uppercase tracking-wider text-amber font-semibold block">TikTok</span>
+                    <a href="https://tiktok.com/@.coach.avelo" target="_blank" rel="noreferrer" className="hover:text-amber transition-colors text-sm sm:text-base">
+                      @.coach.avelo
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20">
+                  <div className="w-9 h-9 rounded-full bg-primary-deep flex items-center justify-center text-amber border border-amber/20 flex-shrink-0">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase tracking-wider text-amber font-semibold block">Portland Studio</span>
-                    <span>842 NW 23rd Ave, Portland, OR</span>
+                    <span className="text-[11px] uppercase tracking-wider text-amber font-semibold block">Addis Ababa Studio</span>
+                    <span className="text-sm sm:text-base">Bole, Addis Ababa, Ethiopia</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Right Contact Form (6 cols) */}
-            <div className="lg:col-span-6 bg-surface text-ink p-8 sm:p-10 rounded-2xl shadow-level3 border border-sand">
+            <div className="lg:col-span-6 bg-surface text-ink p-6 sm:p-10 rounded-2xl shadow-level3 border border-sand w-full">
               {formSubmitted ? (
                 <div className="py-8 text-center flex flex-col items-center">
                   <div className="w-14 h-14 rounded-full bg-tertiary-tint flex items-center justify-center text-primary mb-4 shadow-level1">
@@ -601,7 +629,7 @@ export default function HomePage() {
                       setFormContact("");
                       setFormGoal("");
                     }}
-                    className="px-8 py-3.5 min-h-[44px] rounded-full bg-primary text-on-primary hover:bg-primary-deep transition-all font-sans text-label-md uppercase tracking-wider font-semibold shadow-level1"
+                    className="px-8 py-3.5 min-h-[46px] rounded-full bg-primary text-on-primary hover:bg-primary-deep transition-all font-sans text-label-md uppercase tracking-wider font-semibold shadow-level1"
                   >
                     Send another message
                   </button>
@@ -617,14 +645,14 @@ export default function HomePage() {
                       required
                       value={formName}
                       onChange={(e) => setFormName(e.target.value)}
-                      placeholder="e.g. Alex Morgan"
-                      className="w-full px-4 py-3 rounded-lg bg-surface border border-sand text-ink font-sans text-body-md focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm"
+                      placeholder="e.g. Dawit Alemayehu"
+                      className="w-full px-4 py-3 rounded-lg bg-surface border border-sand text-ink font-sans text-base focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm"
                     />
                   </div>
 
                   <div>
                     <label className="block font-sans text-xs uppercase tracking-wider text-ink font-semibold mb-1.5">
-                      Email or Phone / Telegram *
+                      Phone / Telegram or Email *
                     </label>
                     <input
                       type="text"
@@ -634,8 +662,8 @@ export default function HomePage() {
                         setFormContact(e.target.value);
                         if (formError) setFormError("");
                       }}
-                      placeholder="you@email.com or @telegram"
-                      className={`w-full px-4 py-3 rounded-lg bg-surface border text-ink font-sans text-body-md focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm ${
+                      placeholder="+251 9... or @telegram"
+                      className={`w-full px-4 py-3 rounded-lg bg-surface border text-ink font-sans text-base focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm ${
                         formError ? "border-error" : "border-sand"
                       }`}
                     />
@@ -652,15 +680,15 @@ export default function HomePage() {
                       rows={3}
                       value={formGoal}
                       onChange={(e) => setFormGoal(e.target.value)}
-                      placeholder="Tell me a bit about what you want to achieve or past injuries..."
-                      className="w-full px-4 py-3 rounded-lg bg-surface border border-sand text-ink font-sans text-body-md focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm resize-none"
+                      placeholder="Tell me a bit about what you want to achieve or past joint tweaks..."
+                      className="w-full px-4 py-3 rounded-lg bg-surface border border-sand text-ink font-sans text-base focus:outline-none focus:border-primary focus:ring-[3px] focus:ring-primary/20 transition-all shadow-sm resize-none"
                     />
                   </div>
 
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full min-h-[44px] py-4 rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all duration-200 ease-out font-sans text-label-md uppercase tracking-[0.14em] font-semibold shadow-level1 hover:shadow-[0_10px_24px_-4px_rgba(168,87,58,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-2.5 group overflow-hidden"
+                      className="w-full min-h-[48px] py-3.5 sm:py-4 rounded-full bg-secondary text-on-secondary hover:bg-[#8E432A] transition-all duration-200 ease-out font-sans text-label-md uppercase tracking-[0.14em] font-semibold shadow-level1 hover:shadow-[0_10px_24px_-4px_rgba(168,87,58,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-2.5 group overflow-hidden"
                     >
                       <span className="transition-transform duration-200 ease-out group-hover:translate-x-0.5">Send request</span>
                       <ArrowRight className="w-4 h-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
@@ -678,14 +706,14 @@ export default function HomePage() {
 
       {/* MOBILE STICKY BOTTOM BAR (Section 10) */}
       {showMobileStickyBar && (
-        <div className="md:hidden fixed bottom-4 left-4 right-4 z-40 animate-in slide-in-from-bottom-4 duration-base">
+        <div className="md:hidden fixed bottom-4 left-3 right-3 z-40 animate-in slide-in-from-bottom-4 duration-base">
           <div className="bg-canvas/95 backdrop-blur-md p-2 rounded-full shadow-level3 border border-sand flex items-center justify-between">
-            <span className="font-serif text-sm text-ink pl-4 italic">
+            <span className="font-serif text-sm text-ink pl-3.5 italic">
               Precision first.
             </span>
             <button
               onClick={() => openBooking("Individual Assessment")}
-              className="px-5 py-2.5 min-h-[40px] rounded-full bg-secondary text-on-secondary font-sans text-label-md uppercase tracking-[0.12em] font-semibold shadow-level1 hover:shadow-[0_8px_20px_-4px_rgba(168,87,58,0.35)] flex items-center gap-2 transition-all duration-200 ease-out active:scale-[0.98] group"
+              className="px-4 py-2.5 min-h-[42px] rounded-full bg-secondary text-on-secondary font-sans text-[11px] uppercase tracking-[0.12em] font-semibold shadow-level1 hover:shadow-[0_8px_20px_-4px_rgba(168,87,58,0.35)] flex items-center gap-1.5 transition-all duration-200 ease-out active:scale-[0.98] group"
             >
               <span className="transition-transform duration-200 ease-out group-hover:translate-x-0.5">Book a session</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 ease-out group-hover:translate-x-1" />

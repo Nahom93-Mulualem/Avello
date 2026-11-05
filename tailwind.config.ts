@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        background: "#F7F3EB",
         canvas: "#F7F3EB",
         sand: "#E8DFD1",
         surface: "#FFFFFF",
